@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { actionCreators } from "../store";
+import { add } from "../store";
 import ToDo from "../components/ToDo";
 
 function Home({ toDos, addToDo }) {
@@ -15,10 +15,9 @@ function Home({ toDos, addToDo }) {
             setText("");
         } else alert("내용을 입력해 주세요.");
     }
-
     return (
         <>
-            <h1>TO DO</h1>
+            <h1>To Do</h1>
             <form onSubmit={onSubmit}>
                 <input type="text" value={text} onChange={onChange} />
                 <button>Add</button>
@@ -32,13 +31,13 @@ function Home({ toDos, addToDo }) {
     );
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return { toDos: state };
 }
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
     return {
-        addToDo: (text) => dispatch(actionCreators.addToDo(text)),
+        addToDo: (text) => dispatch(add(text)),
     };
 }
 
